@@ -1,0 +1,22 @@
+
+{
+    "version": "0.2.0",
+    "configurations": [ 
+
+        
+    {
+        "command": "npm start",
+        "name": "Run npm start",
+        "request": "launch",
+        "type": "node-terminal"
+    },
+        {
+            "firefoxExecutable": "/usr/bin/firefox",
+            "name": "Firefox",
+            "type": "firefox",
+            "request": "launch",
+            "url": "http://localhost:3000",     // create-react-app's default port 3000
+            "webRoot": "${workspaceRoot}/src"
+        }
+    ]
+}
