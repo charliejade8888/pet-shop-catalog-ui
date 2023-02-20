@@ -11,32 +11,49 @@ import ListTodosComponent from './ListTodosComponent.jsx'
 import HelloWorldService from '../../api/todo/HelloWorldService.js'
 
 class WelcomeComponent extends Component {
-    // execute following to make node backwards compatible
-    // export NODE_OPTIONS=--openssl-legacy-provider
-    constructor(props) {
-        super(props)
-        this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this)
-    }
-    render() {
-        console.log("hello")
-        console.log(sessionStorage.getItem("bearer-token"))
-        return (
-            <>
-                <h1>Welcome</h1>
-                <div className='container'>Welcome {this.props.params.name}. You can manage your Todos <Link to='/todos'>here</Link></div>
-                <div className='container'>
-                    Click here to get a customised welcome message.
-                    <button onClick={this.retrieveWelcomeMessage} className='btn btn-success'>Get Welcome Message</button>
-                </div>
-            </>
-        )
-    }
-    retrieveWelcomeMessage() {
-        HelloWorldService.executeHelloWorldService()
-        .then( response => console.log(response))
-        // .catch()
-        // console.log('retrieve clicked')
-    }
+  // execute following to make node backwards compatible
+  // export NODE_OPTIONS=--openssl-legacy-provider
+  constructor(props) {
+    super(props);
+    this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this);
+    this.state = {
+      welcomeMessage: "",
+    };
+    this.handleSuccessfulResponse = this.handleSuccessfulResponse.bind(this);
+  }
+  render() {
+    console.log("hello");
+    console.log(sessionStorage.getItem("bearer-token"));
+    return (
+      <>
+        <h1>Welcome</h1>
+        <div className="container">
+          Welcome {this.props.params.name}. You can manage your Todos{" "}
+          <Link to="/todos">here</Link>
+        </div>
+        <div className="container">
+          Click here to get a customised welcome message.
+          <button
+            onClick={this.retrieveWelcomeMessage}
+            className="btn btn-success"
+          >
+            Get Welcome Message
+          </button>
+        </div>
+        <div className="container">{this.state.welcomeMessage}</div>
+      </>
+    );
+  }
+  retrieveWelcomeMessage() {
+    HelloWorldService.executeHelloWorldService().then((response) =>
+      this.handleSuccessfulResponse(response)
+    );
+    // .catch()
+    // console.log('retrieve clicked')
+  }
+  handleSuccessfulResponse(response) {
+    this.setState({ welcomeMessage: response.data[1].name });
+  }
 }
 
 export default WelcomeComponent
