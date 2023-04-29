@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
 
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
-
-import withNavigation from './WithNavigation.jsx'
-import withParams from './WithParams.jsx'
-import AuthenticationService from './AuthenticationService.js'
-import AuthenticatedRoute from './AuthenticatedRoute.jsx'
-import LoginComponent from './LoginComponent.jsx'
-import ListTodosComponent from './ListTodosComponent.jsx'
 import HelloWorldService from '../../api/todo/HelloWorldService.js'
 
 class WelcomeComponent extends Component {
