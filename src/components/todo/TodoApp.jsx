@@ -13,8 +13,8 @@ import HeaderComponent from './HeaderComponent.jsx'
 import FooterComponent from './FooterComponent.jsx'
 import ErrorComponent from './ErrorComponent.jsx'
 
-class TodoApp extends Component {
-    render() {
+function TodoApp() {
+    
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
         const WelcomeComponentWithParams = withParams(WelcomeComponent);
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
@@ -36,6 +36,6 @@ class TodoApp extends Component {
             </div>
         )
     }
-}
+
 
 export default TodoApp

@@ -1,50 +1,43 @@
-import React, { Component } from 'react'
+function ListTodosComponent() {
 
-class ListTodosComponent extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            todos:
-                [
-                    { id: 1, description: 'Learn React', done: false, targetDate: new Date },
-                    { id: 2, description: 'Become an expert at React', done: false, targetDate: new Date },
-                    { id: 3, description: 'Visit India', done: false, targetDate: new Date }
-                ]
-        }
-    }
-    render() {
-        return (
+    const today = new Date()
+    const targetDate = new Date(today.getFullYear() + 12, today.getMonth(), today.getDay())
+    const todos = [
+        { id: 1, description: 'Learn AWS', done: false, targetDate: targetDate },
+        { id: 2, description: 'Learn Full Stack Dev', done: false, targetDate: targetDate },
+        { id: 3, description: 'Learn Dev Ops', done: false, targetDate: targetDate }
+    ]
+    return (
+        <div className="container">
+            <h1>Things you want to do!</h1>
             <div>
-                <h1>List Todos</h1>
-                <div className='table'>
-                <table>
+                <table className="table">
                     <thead>
                         <tr>
-                            {/* <th>id</th> */}
-                            <th>Description</th>
-                            <th>Is completed?</th>
-                            <th>Target date</th>
+                            <td>Id</td>
+                            <td>Description</td>
+                            <td>Is done?</td>
+                            <td>Target date</td>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            this.state.todos.map(
-                                todo =>
+                            todos.map(
+                                todo => (
                                     <tr key={todo.id}>
-                                        {/* <td>{todo.id}</td> */}
+                                        <td>{todo.id}</td>
                                         <td>{todo.description}</td>
                                         <td>{todo.done.toString()}</td>
-                                        <td>{todo.targetDate.toString()}</td>
+                                        <td>{todo.targetDate.toDateString()}</td>
                                     </tr>
+                                )
                             )
                         }
-
                     </tbody>
                 </table>
-                </div>
-            </div >
-        )
-    }
+            </div>
+        </div>
+    )
 }
 
 export default ListTodosComponent

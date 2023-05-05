@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 import HelloWorldService from '../../api/todo/HelloWorldService.js'
 
+
+// TODO keep comment when replacing this!!
 class WelcomeComponent extends Component {
   // execute following to make node backwards compatible
   // export NODE_OPTIONS=--openssl-legacy-provider

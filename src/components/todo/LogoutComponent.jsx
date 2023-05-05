@@ -9,17 +9,15 @@ import LoginComponent from './LoginComponent.jsx'
 import ListTodosComponent from './ListTodosComponent.jsx'
 import WelcomeComponent from './WelcomeComponent.jsx'
 
-class LogoutComponent extends Component {
-    render() {
-        return (
-            <>
-                <h1>You are logged out</h1>
-                <div className='container'>
-                    Thankyou for Using Our Application
-                </div>
-            </>
-        )
-    }
+function LogoutComponent() {
+    return (
+        <>
+            <h1>You are logged out</h1>
+            <div className='container'>
+                Thankyou for Using Our Application
+            </div>
+        </>
+    )
 }
 
 export default LogoutComponent
