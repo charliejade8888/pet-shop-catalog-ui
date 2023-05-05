@@ -1,3 +1,4 @@
+// TODO look at what uses this and it's counterparts in newer version
 class AuthenticationService {
     registerSuccessfulLogin(username, password) {
         console.log('registerSuccessfulLogin')
