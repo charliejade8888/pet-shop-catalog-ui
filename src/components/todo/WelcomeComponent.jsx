@@ -8,7 +8,8 @@ import HelloWorldService from '../../api/todo/HelloWorldService.js'
 class WelcomeComponent extends Component {
   // execute following to make node backwards compatible
   // export NODE_OPTIONS=--openssl-legacy-provider
-  constructor(props) {
+  constructor(props) { //TODO gooogle how to convert to function OR try using Welcomecomp from other oR check course 
+    // on how done
     super(props);
     this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this);
     this.state = {
