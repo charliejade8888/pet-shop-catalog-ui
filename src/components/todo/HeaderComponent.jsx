@@ -13,7 +13,7 @@ function HeaderComponent() {
                 <div><a href="https://www.in28minutes.com/" className='navbar-brand'>in28minutes</a></div>
                 <ul className="navbar-nav">
                     {isUserLoggedIn && <li><Link className='nav-link' to='/welcome/in28minutes'>Home</Link></li>}
-                    {isUserLoggedIn && <li><Link className='nav-link' to='/todos'>Todos</Link></li>}
+                    {isUserLoggedIn && <li><Link className='nav-link' to='/todos'>Pets</Link></li>}
                 </ul>
                 <ul className="navbar-nav navbar-collapse justify-content-end">
                     {/* { !isUserLoggedIn && <li><Link className='nav-link' to='/login'>Login</Link></li>} */}
