@@ -16,7 +16,7 @@ function ListTodosComponent() {
     const [todos,setTodos] = useState([])
     // retrievePets()
     useEffect(
-        () => refreshTodos()
+        () => refreshTodos(), [] // 2nd param is deps (other components)
     )
     function refreshTodos() {
         retrievePets()
