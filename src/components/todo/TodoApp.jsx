@@ -15,9 +15,9 @@ import ErrorComponent from './ErrorComponent.jsx'
 
 function TodoApp() {
     
-        const LoginComponentWithNavigation = withNavigation(LoginComponent);
+        // const LoginComponentWithNavigation = withNavigation(LoginComponent);
         const WelcomeComponentWithParams = withParams(WelcomeComponent);
-        const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
+        const HeaderComponentWithNavigation = HeaderComponent; //withNavigation(HeaderComponent);
 
         return (
             <div className="TodoApp">

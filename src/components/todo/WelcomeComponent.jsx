@@ -81,7 +81,7 @@ function WelcomeComponent() {
     <div className="Welcome">
       <h1>Welcome {username}</h1>
       <div>
-        Browse Pets <Link to="/todos">Go here</Link>
+        Browse <Link to="/todos">Go here</Link>
       </div>
       <div>
         <button className="btn btn-success m-1" onClick={callHelloWorldRestApi}>

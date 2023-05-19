@@ -3,9 +3,9 @@ import { Navigate } from 'react-router-dom'
 //import { Route, Redirect } from 'react-router-dom' //REACT-5
 import { logout, isUserLoggedIn } from "./AuthenticationService"
  
-export default function AuthenticatedRoute(props) {
+export default function AuthenticatedRoute({ children }) {
         if (isUserLoggedIn()) {
-            return {...props.children}
+            return children
         } else {
             console.log(`DOWEGETHERE:: ${isUserLoggedIn()}`)
             return window.location.href = 'http://localhost:8180/realms/petshoprealm/protocol/openid-connect/logout';
