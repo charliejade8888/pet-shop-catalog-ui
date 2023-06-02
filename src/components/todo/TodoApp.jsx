@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 
-import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Routes, useParams } from 'react-router-dom'
 
 import withNavigation from './WithNavigation.jsx'
-import withParams from './WithParams.jsx'
 import AuthenticatedRoute from './AuthenticatedRoute.jsx'
 import LoginComponent from './LoginComponent.jsx'
 import LogoutComponent from './LogoutComponent.jsx'
@@ -16,7 +15,7 @@ import ErrorComponent from './ErrorComponent.jsx'
 function TodoApp() {
     
         // const LoginComponentWithNavigation = withNavigation(LoginComponent);
-        const WelcomeComponentWithParams = withParams(WelcomeComponent);
+        const WelcomeComponentWithParams = WelcomeComponent; // TODO remove redundants
         const HeaderComponentWithNavigation = HeaderComponent; //withNavigation(HeaderComponent);
 
         return (

@@ -27,6 +27,9 @@ function ListTodosComponent() {
         .catch((error) => console.log(error))
         .finally(() => console.log('clean up'))
     }
+    function deleteTodo(id) {
+        console.log(`clicked + ${id}`)
+    }
     return (
         <div className="container">
             <h1>Pets In Store!</h1>
@@ -34,12 +37,13 @@ function ListTodosComponent() {
                 <table className="table">
                     <thead>
                         <tr>
-                            <td>Id</td>
-                            <td>Name</td>
-                            <td>Description</td>
-                            <td>Breed</td>
-                            <td>Type</td>
-                            <td>Price</td>
+                            {/* <td>Id</td> */}
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Breed</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,12 +51,13 @@ function ListTodosComponent() {
                             todos.map(
                                 todo => (
                                     <tr key={todo.id}>
-                                         <td>{todo.id}</td>
+                                         {/* <td>{todo.id}</td> */}
                                         <td>{todo.name}</td>
                                         <td>{todo.description}</td>
                                         <td>{todo.breed}</td>
                                         <td>{todo.type}</td>
                                         <td>{todo.price}</td>
+                                        <td><button className="btn btn-warning" onClick={() => {deleteTodo(todo.id)}}>Delete</button></td>
                                         {/* <td>{todo.done.toString()}</td>
                                         <td>{todo.targetDate.toDateString()}</td> */}
                                     </tr>
