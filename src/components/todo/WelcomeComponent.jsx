@@ -57,14 +57,14 @@
 // import axios from "axios"
 import { useState } from 'react'
 import { BrowserRouter, Link, Route, Routes, useNavigate, useParams } from 'react-router-dom'
-import { retrievePets } from '../../api/todo/HelloWorldApiService'
+import { retrievePetsApi } from '../../api/todo/PetShopApiService'
 
 function WelcomeComponent() {
   const { username } = useParams()
   const [message, setMessage] = useState(null)
 
-  function callHelloWorldRestApi() {
-    retrievePets()
+  function callPetShopRestApi() {
+    retrievePetsApi()
     .then((response) => successfulResponse(response))
     .catch((error) => errorResponse(error))
     .finally(() => console.log('clean up'))
@@ -79,12 +79,12 @@ function WelcomeComponent() {
   }
   return (
     <div className="Welcome">
-      <h1>Welcome {username}</h1>
+      <h1>Welcome {sessionStorage.getItem('username')}</h1>
       <div>
         Browse <Link to="/todos">Go here</Link>
       </div>
       <div>
-        <button className="btn btn-success m-1" onClick={callHelloWorldRestApi}>
+        <button className="btn btn-success m-1" onClick={callPetShopRestApi}>
           Call Hello World
         </button>
       </div>

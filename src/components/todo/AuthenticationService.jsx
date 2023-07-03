@@ -9,3 +9,6 @@ export const isUserLoggedIn = () => {
     if (token === null) return false;
     return true;
 }
+
+// useContext is useful for multiple deeply nested components to avoid 'prop drilling'
+// https://www.w3schools.com/react/react_usecontext.asp

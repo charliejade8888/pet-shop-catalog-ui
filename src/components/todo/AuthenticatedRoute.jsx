@@ -5,9 +5,8 @@ import { logout, isUserLoggedIn } from "./AuthenticationService"
  
 export default function AuthenticatedRoute({ children }) {
         if (isUserLoggedIn()) {
-            return children
+            return children 
         } else {
-            console.log(`DOWEGETHERE:: ${isUserLoggedIn()}`)
             return window.location.href = 'http://localhost:8180/realms/petshoprealm/protocol/openid-connect/logout';
             // return <Navigate to="http://localhost:8180/realms/petshoprealm/protocol/openid-connect/logout" /> 
         }

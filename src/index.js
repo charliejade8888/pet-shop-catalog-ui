@@ -27,7 +27,8 @@ keycloak.init({ onLoad: initOptions.onLoad }).success((auth) => {
         console.info("Authenticated");
     }
 
-    sessionStorage.setItem("keycloak", keycloak.userInfo);
+    
+    sessionStorage.setItem("username", keycloak.idTokenParsed.preferred_username);
     sessionStorage.setItem("bearer-token", keycloak.token);
     sessionStorage.setItem("refresh-token", keycloak.refreshToken);
     // console.log(keycloak.token);

@@ -11,6 +11,7 @@ import WelcomeComponent from './WelcomeComponent.jsx'
 import HeaderComponent from './HeaderComponent.jsx'
 import FooterComponent from './FooterComponent.jsx'
 import ErrorComponent from './ErrorComponent.jsx'
+import PetComponent from './PetComponent.jsx'
 
 function TodoApp() {
     
@@ -26,6 +27,7 @@ function TodoApp() {
                         <Route path="/" element={<WelcomeComponentWithParams />} />
                         {/* <Route path="/login" element={<LoginComponentWithNavigation />} /> */}
                         <Route path="/logout" element={<AuthenticatedRoute><LogoutComponent /></AuthenticatedRoute>} /> 
+                        <Route path="/pet/:name" element={<AuthenticatedRoute><PetComponent /></AuthenticatedRoute>} /> 
                         <Route path="/todos" element={<AuthenticatedRoute><ListTodosComponent /></AuthenticatedRoute>} /> 
                         <Route path="/welcome/:name" element={<AuthenticatedRoute><WelcomeComponentWithParams /></AuthenticatedRoute>} /> 
                         <Route path="*" element={<ErrorComponent />} />
