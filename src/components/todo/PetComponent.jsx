@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { retrievePetApi, updatePet } from "../../api/todo/PetShopApiService"
 import { useEffect, useState } from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
@@ -7,26 +7,43 @@ export default function PetComponent() {
     // const [description, setDescription] = useState('')
     const { name } = useParams() // toDO check grammar and try w id
     const [petName, setPetName] = useState('')
+    const [petDescription, setPetDescription] = useState('')
+    const [petPrice, setPetPrice] = useState('')
+    const [petType, setPetType] = useState('')
+    const [petBreed, setPetBreed] = useState('')
+    const navigate = useNavigate()
     console.log(`NAME:: ${name}`)
+    const newPet = -1 // TODO BS use undefined instead??
     useEffect(
         () => retrievePet(), [name] // [[..] tells useEffect to refresh component only when name changes
     )
-    function retrievePet() {
 
-        retrievePetApi(name)
+    function retrievePet() {
+        if (name != newPet) {
+            retrievePetApi(name)
+                .then(response => {
+                    setPetName(response.data.name)
+                    setPetPrice(response.data.price)
+                    setPetDescription(response.data.description)
+                    setPetType(response.data.type)
+                    setPetBreed(response.data.breed)
+                    console.log(response.data.name)
+                    // setDescription(response.data.description)
+                })
+                .catch((error) => console.log(error))
+        }
+    }
+    function onSubmit(values) {
+        updatePet(name, values.petPrice)
             .then(response => {
-                setPetName(response.data.name)
-                console.log(response.data.name)
+                //setPetName(response.data.name)
+                console.log(response.data)
+                navigate('/todos')
+                // TODO error + correct /todos -> /pets
+                // TODO add all fields to form
                 // setDescription(response.data.description)
             })
             .catch((error) => console.log(error))
-    }
-    function onSubmit(values) {
-        updatePet(name) .then(response => {
-            //setPetName(response.data.name)
-            console.log(response.data)
-            // setDescription(response.data.description)
-        })
         // console.log(values)
         // console.log('bollox')
         // console.log(`Hello there ${values}`)
@@ -36,16 +53,34 @@ export default function PetComponent() {
         console.log('bollox')
         console.log(`Hello there ${values}`)
         let errors = {}
-        if(values.petName.length<3) {
+        if (!values.petName) {
             console.log(`error ${values.petName.length}`)
-            errors.petName='Enter at least 3 characters'
+            errors.petName = 'Enter a name'
+        }
+        if (!values.petDescription) {
+            console.log(`error ${values.petName.length}`)
+            errors.petDescription = 'Enter a description'
+        }
+        if (!values.petPrice) {
+            console.log(`error ${values.petPrice}`)
+            errors.petPrice = 'Enter a price'
+        }
+        if (!values.petType) {
+            console.log(`error ${values.petType}`)
+            errors.petType = 'Enter a type'
+        }
+        if (!values.petBreed) {
+            console.log(`error ${values.petBreed}`)
+            errors.petBreed = 'Enter a breed'
         }
         return errors
     }
     return <div className="container">
         <h1>Enter Pet Details</h1>
         <div>
-            <Formik initialValues={{ petName }}
+
+            {/* TODO check course for how to add multiple initial */}
+            <Formik initialValues={{ petPrice, petName, petDescription, petType, petBreed }}
                 enableReinitialize={true}
                 onSubmit={onSubmit}
                 validate={validate}
@@ -58,19 +93,48 @@ export default function PetComponent() {
                                 component="div"
                                 className="alert alert-warning"
                             />
-                            {/* <ErrorMessage
-                                name="targetDate"
+                            <ErrorMessage
+                                name="petDescription"
                                 component="div"
                                 className="alert alert-warning"
-                            /> */}
+                            />
+                            <ErrorMessage
+                                name="petPrice"
+                                component="div"
+                                className="alert alert-warning"
+                            />
+                            <ErrorMessage
+                                name="petType"
+                                component="div"
+                                className="alert alert-warning"
+                            />
+                            <ErrorMessage
+                                name="petBreed"
+                                component="div"
+                                className="alert alert-warning"
+                            />
                             <fieldset className="form-group">
                                 <label>Name</label>
-                                <Field type="text" className="form-control" name="petName" />
+                                <Field type="text" className="form-control" name="petName"
+                                    disabled={name != newPet} />
                             </fieldset>
-                            {/* <fieldset className="form-group">
-                            <label>Description</label>
-                            <Field type="text" className="form-control" name="description" />
-                        </fieldset> */}
+                            <fieldset className="form-group">
+                                <label>Description</label>
+                                <Field type="text" className="form-control" name="petDescription"
+                                    disabled={name != newPet} />
+                            </fieldset>
+                            <fieldset className="form-group">
+                                <label>Price</label>
+                                <Field type="text" className="form-control" name="petPrice" />
+                            </fieldset>
+                            <fieldset className="form-group">
+                                <label>Type</label>
+                                <Field type="text" className="form-control" name="petType" disabled={name != newPet} />
+                            </fieldset>
+                            <fieldset className="form-group">
+                                <label>Breed</label>
+                                <Field type="text" className="form-control" name="petBreed" disabled={name != newPet} />
+                            </fieldset>
                             {/* <fieldset className="form-group">
                             <label>Target <Date></Date></label>
                             <Field type="date" className="form-control" name="targetDate" />

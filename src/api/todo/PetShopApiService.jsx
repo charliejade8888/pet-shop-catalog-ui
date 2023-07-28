@@ -33,7 +33,7 @@ export const deletePetApi = (name) => apiClient.delete(`http://localhost:9000/ca
 }) 
 
 
-export const updatePet = (name) => axios.patch(`http://localhost:9000/catalog/update/${name}`, {price: '123'}, {
+export const updatePet = (name, price) => axios.patch(`http://localhost:9000/catalog/update/${name}`, {price: `${price}`}, {
     headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem("bearer-token"),
         'Content-Type': 'application/json;charset=utf-8'
