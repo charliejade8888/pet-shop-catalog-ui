@@ -13,7 +13,7 @@ export default function PetComponent() {
     const [petBreed, setPetBreed] = useState('')
     const navigate = useNavigate()
     console.log(`NAME:: ${name}`)
-    const newPet = -1 // TODO BS use undefined instead??
+    const newPet = 'newPet' // TODO BS use undefined instead??
     useEffect(
         () => retrievePet(), [name] // [[..] tells useEffect to refresh component only when name changes
     )

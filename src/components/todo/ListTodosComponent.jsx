@@ -46,7 +46,7 @@ function ListTodosComponent() {
         navigate(`/pet/${name}`)
     }
     function addNewPet() {
-        navigate(`/pet/-1`) // TODO BS change -1 to undefined
+        navigate(`/pet/newPet`) // TODO BS change -1 to undefined
     }
     return (
         <div className="container">
