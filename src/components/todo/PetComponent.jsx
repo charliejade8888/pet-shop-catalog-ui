@@ -13,13 +13,13 @@ export default function PetComponent() {
     const [petBreed, setPetBreed] = useState('')
     const navigate = useNavigate()
     console.log(`NAME:: ${name}`)
+    const newPet = -1 // TODO BS use undefined instead??
     useEffect(
         () => retrievePet(), [name] // [[..] tells useEffect to refresh component only when name changes
     )
 
     function retrievePet() {
-        // TODO 
-        if (name !== 'new-pet') {
+        if (name != newPet) {
             retrievePetApi(name)
                 .then(response => {
                     setPetName(response.data.name)
@@ -34,7 +34,7 @@ export default function PetComponent() {
         }
     }
     function onSubmit(values) {
-        updatePet(name, values.petPrice) // TODO use values.petId to call update
+        updatePet(name, values.petPrice)
             .then(response => {
                 //setPetName(response.data.name)
                 console.log(response.data)
@@ -116,12 +116,12 @@ export default function PetComponent() {
                             <fieldset className="form-group">
                                 <label>Name</label>
                                 <Field type="text" className="form-control" name="petName"
-                                    disabled={name !== 'new-pet'} />
+                                    disabled={name != newPet} />
                             </fieldset>
                             <fieldset className="form-group">
                                 <label>Description</label>
                                 <Field type="text" className="form-control" name="petDescription"
-                                    disabled={name !== 'new-pet'} />
+                                    disabled={name != newPet} />
                             </fieldset>
                             <fieldset className="form-group">
                                 <label>Price</label>
@@ -129,11 +129,11 @@ export default function PetComponent() {
                             </fieldset>
                             <fieldset className="form-group">
                                 <label>Type</label>
-                                <Field type="text" className="form-control" name="petType" disabled={name !== 'new-pet'} />
+                                <Field type="text" className="form-control" name="petType" disabled={name != newPet} />
                             </fieldset>
                             <fieldset className="form-group">
                                 <label>Breed</label>
-                                <Field type="text" className="form-control" name="petBreed" disabled={name !== 'new-pet'} />
+                                <Field type="text" className="form-control" name="petBreed" disabled={name != newPet} />
                             </fieldset>
                             {/* <fieldset className="form-group">
                             <label>Target <Date></Date></label>

@@ -29,7 +29,7 @@ function ListTodosComponent() {
             .catch((error) => console.log(error))
             .finally(() => console.log('clean up'))
     }
-    function deletePet(name) { // TODO use todos.petId not name
+    function deletePet(name) {
         console.log(`clicked + ${name}`)
         deletePetApi(name)
             .then(
@@ -41,12 +41,12 @@ function ListTodosComponent() {
             .catch((error) => console.log(error))
             .finally(() => console.log('clean up'))
     }
-    function updatePet(name) { // TODO use todos.petId not name
+    function updatePet(name) {
         console.log(`clicked + ${name}`)
-        navigate(`/pet/${name}`) // TODO use todos.petId not name
+        navigate(`/pet/${name}`)
     }
     function addNewPet() {
-        navigate(`/pet/new-pet`) // TODO BS change -1 to undefined
+        navigate(`/pet/-1`) // TODO BS change -1 to undefined
     }
     return (
         <div className="container">
