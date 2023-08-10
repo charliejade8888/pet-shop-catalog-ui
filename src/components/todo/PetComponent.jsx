@@ -1,7 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { retrievePetApi, updatePet } from "../../api/todo/PetShopApiService"
+import { createPetApi, retrievePetApi, updatePet } from "../../api/todo/PetShopApiService"
 import { useEffect, useState } from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
+import moment from "moment"
 
 export default function PetComponent() {
     // const [description, setDescription] = useState('')
@@ -34,7 +35,15 @@ export default function PetComponent() {
         }
     }
     function onSubmit(values) {
-        updatePet(name, values.petPrice)
+        if (name == newPet) {
+            const pet = {
+                name: values.petName,
+                description: values.petDescription,
+                price: values.petPrice,
+                breed: values.petBreed,
+                type: values.petType
+            }
+            createPetApi(pet)
             .then(response => {
                 //setPetName(response.data.name)
                 console.log(response.data)
@@ -44,9 +53,21 @@ export default function PetComponent() {
                 // setDescription(response.data.description)
             })
             .catch((error) => console.log(error))
-        // console.log(values)
-        // console.log('bollox')
-        // console.log(`Hello there ${values}`)
+        } else {
+            updatePet(name, values.petPrice)
+                .then(response => {
+                    //setPetName(response.data.name)
+                    console.log(response.data)
+                    navigate('/todos')
+                    // TODO error + correct /todos -> /pets
+                    // TODO add all fields to form
+                    // setDescription(response.data.description)
+                })
+                .catch((error) => console.log(error))
+            // console.log(values)
+            // console.log('bollox')
+            // console.log(`Hello there ${values}`)
+        }
     }
     function validate(values) {
         console.log(values)
@@ -73,6 +94,10 @@ export default function PetComponent() {
             console.log(`error ${values.petBreed}`)
             errors.petBreed = 'Enter a breed'
         }
+        // if (values.targetDate==null || values.targetDate=='' || !moment(values.targetDate).isValid() ) {
+        //     console.log(`error ${values.targetDate}`)
+        //     errors.petBreed = 'Enter a valid date'
+        // }
         return errors
     }
     return <div className="container">
